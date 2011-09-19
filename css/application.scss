@@ -1,0 +1,81 @@
+@import 'boilerplate.scss';
+
+/* ==|== primary styles =====================================================
+   Author: Damon Zucconi
+   ========================================================================== */
+
+	body { 
+		padding:4em;
+		font:16px/22px 'Times New Roman',Times,serif;
+	}
+	::-moz-selection { 
+		background:#000;
+		color:#eee;
+		text-shadow:none;
+	}
+	::selection { 
+		background:#000;
+		color:#eee;
+		text-shadow:none;
+	}
+
+	header { 
+		position:fixed;
+		top:1em;
+		right:1em;
+		font:14px 'Helvetica Neue',Helvetica,sans-serif; 
+	}
+	header, #tractatus { visibility:hidden; }
+	header.complete, #tractatus.complete { visibility:visible; }
+	section.document { background:transparent url('../img/loading.gif') no-repeat top left; }
+	.complete { background-image:none !important; } 
+
+	a:hover { text-decoration:underline; }
+	a, a:visited, a:hover, a:active { color:#3333cc; padding:3px 0; }
+
+	ol {
+		margin:0;
+		padding-left:2em;
+		text-indent:-1em;
+		border-left:2px solid #ccc;
+		list-style:none;
+		a { color:#3333aa; }
+		ol { 
+			border-color:#aaa; 
+			a { color:#333388; }
+			ol { 
+				border-color:#888; 
+				a { color:#333366; }
+				ol { 
+					border-color:#666;
+					a { color:#333344; }
+					ol { 
+						border-color:#444; 
+						a { color:#333; }
+					}
+				}
+			}
+		}
+	}
+
+	span.meta-sep { color:#ccc; margin:0 0.25em; }
+
+/* ==|== print styles =======================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+  * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
