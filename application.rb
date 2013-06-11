@@ -10,34 +10,22 @@ class Application < Sinatra::Base
 
       lines.each_with_index do |line, i|
         match = /^\d.\d*/.match(line)
-        node  = match.to_s
+        node = match.to_s
 
         cur_depth = node.split(".")[1].try(:size) || 0
-        cur_node  = Tree::TreeNode.new(node, match.post_match.strip)
+        cur_node = Tree::TreeNode.new(node, match.post_match.strip)
 
-        if cur_depth == 0
-          tree << cur_node
+        # Determine number of parents to traverse
+        chain = (prev_depth - (cur_depth - 1)).times.collect { "parent" }
 
-        # If the current depth is the same as the previous depth than
-        # the current line is a sibling of the previous line
-        elsif cur_depth == prev_depth
-          prev_node.parent << cur_node
+        node = chain.inject(prev_node, &:send)
 
-        # If the current depth is greater than the previous depth than
-        # the current line is a child of the previous line
-        elsif cur_depth > prev_depth
-          prev_node << cur_node
+        # If node is nil then we are creating a root node
+        (node.nil? ? tree : node) << cur_node
 
-        # If the current depth is lower than the previous depth than
-        # the current line is a child of the parent of the previous line
-        elsif cur_depth < prev_depth
-          chain = (prev_depth - (cur_depth - 1)).times.collect { "parent" }
-
-          chain.inject(prev_node, &:send) << cur_node
-        end
-
+        # Setup for next loop
         prev_depth = cur_depth
-        prev_node  = cur_node
+        prev_node = cur_node
       end
 
       tree
