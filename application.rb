@@ -8,7 +8,7 @@ class Application < Sinatra::Base
       prev_depth, cur_depth = 0, 0
       prev_node = root
 
-      lines.each_with_index do |line, i|
+      lines.each do |line|
         match = /^\d.\d*/.match(line)
 
         cur_depth = match.to_s.split(".")[1].try(:size) || 0
