@@ -1,11 +1,9 @@
-<li>
+<li data-name="<%= node.name %>">
   <%= node.content %>
 
-  <% if node.children %>
-    <ol>
-      <% node.children.each do |child| %>
-        <%= erb :_node, locals: { node: child } %>
-      <% end %>
-    </ol>
+  <% if node.children.present? %>
+    <ol><% node.children.each do |child| %>
+      <%= erb :_node, locals: { node: child } %>
+    <% end %></ol>
   <% end %>
 </li>

@@ -1,5 +1,14 @@
-<ol>
-  <% @tree.children.each do |node| %>
-    <%= erb :_node, locals: { node: node } %>
-  <% end %>
-</ol>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tractatus Logico-Philosophicus</title>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
+  </head>
+
+  <body>
+    <ol><% @tree.children.each do |node| %>
+      <%= erb :_node, locals: { node: node } %>
+    <% end %></ol>
+  </body>
+</html>
