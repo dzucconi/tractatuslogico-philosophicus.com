@@ -3,7 +3,7 @@ class Application < Sinatra::Base
 
   helpers do
     def build_tree(lines)
-      tree = Tree::TreeNode.new("Tractatus")
+      tree = Tree::TreeNode.new("Tractatus Logico-Philosophicus")
 
       prev_depth, cur_depth = 0, 0
       prev_node = tree
@@ -12,11 +12,8 @@ class Application < Sinatra::Base
         match = /^\d.\d*/.match(line)
         node  = match.to_s
 
-        parent    = node.split(".")[0]
         cur_depth = node.split(".")[1].try(:size) || 0
-        statement = match.post_match.strip
-
-        cur_node = Tree::TreeNode.new(node, statement)
+        cur_node  = Tree::TreeNode.new(node, match.post_match.strip)
 
         if cur_depth == 0
           tree << cur_node
