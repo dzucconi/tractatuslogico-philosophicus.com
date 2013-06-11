@@ -20,7 +20,7 @@ class Application < Sinatra::Base
 
         node = chain.inject(prev_node, &:send)
 
-        # If node is nil then we are creating a root node
+        # If node is nil then we are grafting onto the root node
         (node.nil? ? tree : node) << cur_node
 
         # Setup for next loop
