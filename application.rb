@@ -5,7 +5,7 @@ class Application < Sinatra::Base
     def build_tree(lines)
       root = Tree::TreeNode.new("Tractatus Logico-Philosophicus")
 
-      prev_depth, cur_depth = 0, 0
+      prev_depth = 0
       prev_node = root
 
       lines.each do |line|
