@@ -1,5 +1,5 @@
 <li data-name="<%= node.name %>">
-  <%= node.content %>
+  <span class="content"><%= node.content %></span>
 
   <% if node.children.present? %>
     <ol><% node.children.each do |child| %>
