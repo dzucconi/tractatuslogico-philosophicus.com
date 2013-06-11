@@ -1,4 +1,6 @@
 class Application < Sinatra::Base
+  use Rack::Static, urls: ["/stylesheets"], root: "public"
+
   helpers do
     def build_tree(lines)
       tree = Tree::TreeNode.new("Tractatus")
@@ -48,7 +50,7 @@ class Application < Sinatra::Base
 
   get "/" do
     @lines = File.open("./tractatus.txt").read.split("\n")
-    @tree = build_tree(@lines)
+    @tree  = build_tree(@lines)
 
     erb :index
   end
