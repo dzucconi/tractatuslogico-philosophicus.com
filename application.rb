@@ -45,7 +45,7 @@ class Application < Sinatra::Base
   end # helpers
 
   get "/" do
-    @lines = File.open("./tractatus.txt").read.split("\n")
+    @lines = File.open("./resources/txt/tractatus.txt").read.split("\n")
     @tree  = build_tree(@lines)
 
     erb :index
