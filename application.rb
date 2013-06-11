@@ -1,10 +1,10 @@
 module Tractatus
   class Tree
-    attr_reader :root, :lines
+    attr_reader :lines, :root
 
     def initialize(lines)
-      @root = ::Tree::TreeNode.new("Tractatus Logico-Philosophicus")
       @lines = lines
+      @root = ::Tree::TreeNode.new("Tractatus Logico-Philosophicus")
 
       build!
     end
