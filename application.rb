@@ -46,11 +46,10 @@ class Application < Sinatra::Base
     end # build_tree
   end # helpers
 
-  get "/", provides: :json do
+  get "/" do
     @lines = File.open("./tractatus.txt").read.split("\n")
     @tree = build_tree(@lines)
 
-    # erb :index
-    @tree.to_json
+    erb :index
   end
 end # Application

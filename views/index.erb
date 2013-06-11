@@ -1,1 +1,5 @@
-<%= @tree %>
+<ol>
+  <% @tree.children.each do |node| %>
+    <%= erb :_node, locals: { node: node } %>
+  <% end %>
+</ol>

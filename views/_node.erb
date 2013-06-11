@@ -1,0 +1,11 @@
+<li>
+  <%= node.content %>
+
+  <% if node.children %>
+    <ol>
+      <% node.children.each do |child| %>
+        <%= erb :_node, locals: { node: child } %>
+      <% end %>
+    </ol>
+  <% end %>
+</li>
