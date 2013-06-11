@@ -38,21 +38,10 @@ module Tractatus
       @node = ::Tree::TreeNode.new(name, statement)
     end
 
-    def match
-      @match ||= /^\d.\d*/.match(line)
-    end
-
-    def name
-      @name ||= match.to_s
-    end
-
-    def depth
-      @depth ||= match.to_s.split(".")[1].try(:size) || 0
-    end
-
-    def statement
-      @statement ||= match.post_match.strip
-    end
+    def match;     @match     ||= /^\d.\d*/.match(line); end
+    def name;      @name      ||= match.to_s; end
+    def depth;     @depth     ||= match.to_s.split(".")[1].try(:size) || 0; end
+    def statement; @statement ||= match.post_match.strip; end
   end # Line
 end # Tractatus
 
