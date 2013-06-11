@@ -34,10 +34,9 @@ class Application < Sinatra::Base
         # If the current depth is lower than the previous depth than
         # the current line is a child of the parent of the previous line
         elsif cur_depth < prev_depth
-          chain = (prev_depth - (cur_depth - 1)).times.collect { "parent" }.join(".")
+          chain = (prev_depth - (cur_depth - 1)).times.collect { "parent" }
 
-          n = eval("prev_node.#{chain}")
-          n << cur_node
+          chain.inject(prev_node, &:send) << cur_node
         end
 
         prev_depth = cur_depth
