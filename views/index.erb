@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <ol><% @tree.children.each do |node| %>
+    <ol><% @tractatus.root.children.each do |node| %>
       <%= erb :_node, locals: { node: node } %>
     <% end %></ol>
   </body>
