@@ -16,7 +16,7 @@ ol {
 
 ol li {
   list-style: none;
-  margin: 0.25em;
+  margin: 0.75em;
   cursor: default;
   transition: background-color 0.25s;
 }
