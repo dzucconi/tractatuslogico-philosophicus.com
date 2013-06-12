@@ -16,12 +16,23 @@
 
         $parentLi.append($childOl);
       });
+    },
+
+    attachMenu: function($el) {
+      $el.find("#expand").on("click", function() {
+        $("ol").show();
+      });
+
+      $el.find("#collapse").on("click", function() {
+        $("ol > li > ol").hide();
+      });
     }
-  }
+  };
 
   var App = {
     initialize: function() {
       Tractatus.foldAndAttach($("#root"));
+      Tractatus.attachMenu($("#menu"));
     }
   };
 
