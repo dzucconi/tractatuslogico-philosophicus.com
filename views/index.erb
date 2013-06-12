@@ -16,8 +16,12 @@
       <a id="collapse">Collapse</a>
     </div>
 
-    <ol id="root" class="l-root"><% @tractatus.root.children.each do |node| %>
-      <%= erb :_node, locals: { node: node } %>
-    <% end %></ol>
+    <div id="document" class="l-document document">
+      <ol id="root" class="l-root">
+        <% @tractatus.root.children.each do |node| %>
+          <%= erb :_node, locals: { node: node } %>
+        <% end %>
+      </ol>
+    </div>
   </body>
 </html>
