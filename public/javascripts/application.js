@@ -16,11 +16,12 @@
 
   App.Routers.Router = Backbone.Router.extend({
     routes: {
-      "node::node" : "node"
+      "node/:node" : "node",
+      "expanded"   : "expandAll",
+      "collapsed"   : "collapseAll"
     },
 
     initialize: function() {
-      this.menuView = new App.Views.MenuView();
       this.documentView = new App.Views.DocumentView();
     },
 
@@ -29,15 +30,6 @@
 
       $target.addClass("is-open is-highlighted").children("ol").show();
       $target.parents().addClass("is-open").show();
-    }
-  });
-
-  App.Views.MenuView = Backbone.View.extend({
-    el: "#menu",
-
-    events: {
-      "click #expand"   : "expandAll",
-      "click #collapse" : "collapseAll"
     },
 
     expandAll: function() {
@@ -82,7 +74,7 @@
 
       $target.toggleClass("is-open").children("ol").toggle();
 
-      App.router.navigate("node:" + $target.attr("id"), { trigger: false, replace: true });
+      App.router.navigate("node/" + $target.attr("id"), { trigger: false, replace: true });
 
       return false;
     }
