@@ -46,7 +46,7 @@ module Tractatus
 end # Tractatus
 
 class Application < Sinatra::Base
-  use Rack::Static, urls: ["/stylesheets"], root: "public"
+  use Rack::Static, urls: ["/stylesheets", "/javascripts"], root: "public"
 
   get "/" do
     @lines = File.open("./resources/txt/tractatus.txt").read.split("\n")
