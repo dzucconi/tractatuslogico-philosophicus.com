@@ -14,7 +14,10 @@ ol {
   margin: 0;
   padding: 0;
 }
-  .child { padding: 0 1em; }
+  .child {
+    display: none;
+    padding: 0 1em;
+  }
 
 ol > li {
   vertical-align: top;

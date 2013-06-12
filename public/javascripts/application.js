@@ -2,41 +2,66 @@
   "use-strict";
 
   var App = {
-    views: {
-      foldAndAttach: function($el) {
-        $el.find(".child").hide().each(function(i) {
-          var $parentLi, $childOl;
+    Models      : {},
+    Collections : {},
+    Routers     : {},
+    Views       : {},
 
-          $parentLi = $(this).parent("li");
-          $childOl = $(this).remove();
+    initialize: function() {
+      this.router = new App.Routers.Router();
 
-          $parentLi.find(".content").on("click", function() {
-            $childOl.toggle();
-            $parentLi.toggleClass("is-open");
-          });
+      Backbone.history.start();
+    }
+  };
 
-          $parentLi.append($childOl);
-        });
-      },
-
-      attachMenu: function($el) {
-        $el.find("#expand").on("click", function() {
-          $("ol").show();
-          $("li").addClass("is-open");
-        });
-
-        $el.find("#collapse").on("click", function() {
-          $(".child").hide();
-          $("li").removeClass("is-open");
-        });
-      }
+  App.Routers.Router = Backbone.Router.extend({
+    routes: {
+      "" : "index"
     },
 
     initialize: function() {
-      App.views.foldAndAttach($("#root"));
-      App.views.attachMenu($("#menu"));
+      this.menuView = new App.Views.MenuView();
+      this.documentView = new App.Views.DocumentView();
     }
-  };
+  });
+
+  App.Views.MenuView = Backbone.View.extend({
+    el: "#menu",
+
+    events: {
+      "click #expand"   : "expandAll",
+      "click #collapse" : "collapseAll"
+    },
+
+    expandAll: function() {
+      $("ol").show();
+      $("li").addClass("is-open");
+    },
+
+    collapseAll: function() {
+      $(".child").hide();
+      $("li").removeClass("is-open");
+    }
+  });
+
+  App.Views.DocumentView = Backbone.View.extend({
+    el: "#document",
+
+    events: {
+      "click .is-parent"    : "openNode",
+      "click .is-childless" : "preventCollapse"
+    },
+
+    preventCollapse: function(e) {
+      return false;
+    },
+
+    openNode: function(e) {
+      e.stopPropagation();
+
+      $(e.currentTarget).toggleClass("is-open").children("ol").toggle();
+    }
+  });
 
   $(function(){ App.initialize(); });
 }());
