@@ -17,7 +17,7 @@ module Tractatus
         line = Line.new(line)
 
         # Traverse up to appropriate parent
-        chain = (prev_depth - (line.depth - 1)).times.collect { "parent" }
+        chain = (prev_depth - (line.depth - 1)).times.collect { :parent }
         parent = chain.inject(prev_node, &:send)
 
         # If node is nil then we are grafting onto the root node
