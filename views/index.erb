@@ -4,10 +4,13 @@
     <title>Tractatus Logico-Philosophicus</title>
 
     <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="javascripts/application.js"></script>
   </head>
 
   <body>
-    <ol><% @tractatus.root.children.each do |node| %>
+    <ol id="root"><% @tractatus.root.children.each do |node| %>
       <%= erb :_node, locals: { node: node } %>
     <% end %></ol>
   </body>
