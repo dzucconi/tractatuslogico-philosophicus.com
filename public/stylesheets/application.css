@@ -45,6 +45,10 @@ li:hover { background-color: rgba(0,0,0,0.1); }
 
 .is-childless { cursor: default; }
 
+.is-highlighted {
+  background-color: #ff0;
+}
+
 .l-menu {
   position: fixed;
   top: 0;

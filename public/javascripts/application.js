@@ -16,12 +16,19 @@
 
   App.Routers.Router = Backbone.Router.extend({
     routes: {
-      "" : "index"
+      "node::node" : "node"
     },
 
     initialize: function() {
       this.menuView = new App.Views.MenuView();
       this.documentView = new App.Views.DocumentView();
+    },
+
+    node: function(id) {
+      var $target = $("#" + id);
+
+      $target.addClass("is-open is-highlighted").children("ol").show();
+      $target.parents().addClass("is-open").show();
     }
   });
 
@@ -52,18 +59,32 @@
     el: "#document",
 
     events: {
-      "click .is-parent"    : "openNode",
+      "click .is-parent"    : "toggleNode",
       "click .is-childless" : "preventCollapse"
+    },
+
+    initialize: function() {
+      this.once("node:toggle", this.removeHighlight);
+    },
+
+    removeHighlight: function() {
+      $(".is-highlighted").removeClass("is-highlighted");
     },
 
     preventCollapse: function(e) {
       return false;
     },
 
-    openNode: function(e) {
-      e.stopPropagation();
+    toggleNode: function(e) {
+      this.trigger("node:toggle");
 
-      $(e.currentTarget).toggleClass("is-open").children("ol").toggle();
+      var $target = $(e.currentTarget);
+
+      $target.toggleClass("is-open").children("ol").toggle();
+
+      App.router.navigate("node:" + $target.attr("id"), { trigger: false, replace: true });
+
+      return false;
     }
   });
 
