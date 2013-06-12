@@ -24,7 +24,7 @@
       });
 
       $el.find("#collapse").on("click", function() {
-        $("ol > li > ol").hide();
+        $("li > ol").hide();
       });
     }
   };
