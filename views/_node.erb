@@ -1,4 +1,4 @@
-<li id="n<%= node.name %>" data-name="<%= node.name %>" class="<%= node.children.present? ? "is-parent" : "is-childless" %>">
+<li id="n<%= node.name.gsub(".", "-") %>" class="<%= node.children.present? ? "is-parent" : "is-childless" %>" data-name="<%= node.name %>">
   <span class="content"><%= node.content %></span>
 
   <% if node.children.present? %>
