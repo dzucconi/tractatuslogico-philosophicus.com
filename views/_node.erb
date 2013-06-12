@@ -1,4 +1,4 @@
-<li data-name="<%= node.name %>">
+<li data-name="<%= node.name %>" class="<%= node.children.present? ? "is-parent" : "is-childless" %>">
   <span class="content"><%= node.content %></span>
 
   <% if node.children.present? %>
