@@ -36,11 +36,15 @@
     expandAll: function() {
       $("ol").show();
       $("li").addClass("is-open");
+      $("#expand").hide();
+      $("#collapse").show();
     },
 
     collapseAll: function() {
       $(".child").hide();
       $("li").removeClass("is-open");
+      $("#collapse").hide();
+      $("#expand").show();
     }
   });
 

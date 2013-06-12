@@ -38,10 +38,12 @@ li:hover { background-color: rgba(0,0,0,0.1); }
 
 .content { transition: color 0.25s; }
 
-.is-parent > .content { cursor: s-resize; }
-  .is-parent > .content:hover { color: #00f; }
-  .is-parent.is-open > .content { cursor: n-resize; }
-    .is-parent.is-open > .content:hover { color: #f00; }
+.is-parent { cursor: s-resize; }
+  .is-parent:hover > .content { color: #00f; }
+  .is-parent.is-open { cursor: n-resize; }
+    .is-parent.is-open:hover > .content { color: #f00; }
+
+.is-childless { cursor: default; }
 
 .l-menu {
   position: fixed;
@@ -55,6 +57,11 @@ li:hover { background-color: rgba(0,0,0,0.1); }
 }
   .menu > a { cursor: pointer; }
     .menu > a:hover { text-decoration: underline; }
+
+#expand:hover { color: #00f; }
+
+#collapse { display: none; }
+  #collapse:hover { color: #f00; }
 
 .separator {
   margin: 0 0.25em;
