@@ -22,10 +22,12 @@
       attachMenu: function($el) {
         $el.find("#expand").on("click", function() {
           $("ol").show();
+          $("li").addClass("is-open");
         });
 
         $el.find("#collapse").on("click", function() {
           $("li > ol").hide();
+          $("li").removeClass("is-open");
         });
       }
     },
