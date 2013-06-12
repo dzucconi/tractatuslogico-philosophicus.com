@@ -43,13 +43,21 @@ module Tractatus
     def depth;     @depth     ||= match.to_s.split(".")[1].try(:size) || 0; end
     def statement; @statement ||= match.post_match.strip; end
   end # Line
+
+  class Translations
+    PATH = "./resources/txt"
+
+    VERSIONS = {
+        ogden: "#{PATH}/ogden.txt"
+      }
+  end # Translations
 end # Tractatus
 
 class Application < Sinatra::Base
   use Rack::Static, urls: ["/stylesheets", "/javascripts"], root: "public"
 
   get "/" do
-    @lines = File.open("./resources/txt/tractatus.txt").read.split("\n")
+    @lines = File.open(Tractatus::Translations::VERSIONS[:ogden]).read.split("\n")
     @tractatus = Tractatus::Tree.new(@lines)
 
     erb :index
