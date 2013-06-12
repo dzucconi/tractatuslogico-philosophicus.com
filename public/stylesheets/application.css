@@ -14,15 +14,15 @@ ol {
   margin: 0;
   padding: 0;
 }
-  ol li ol { padding: 0 1em; }
+  .child { padding: 0 1em; }
 
-ol li {
+ol > li {
   vertical-align: top;
   width: 100%;
   list-style: none;
   transition: background-color 0.25s;
 }
-  ol li:before {
+  ol > li:before {
     content: attr(data-name);
     margin-right: 0.5em;
     font-family: sans-serif;

@@ -4,7 +4,7 @@
   var App = {
     views: {
       foldAndAttach: function($el) {
-        $el.find("li > ol").hide().each(function(i) {
+        $el.find(".child").hide().each(function(i) {
           var $parentLi, $childOl;
 
           $parentLi = $(this).parent("li");
@@ -26,7 +26,7 @@
         });
 
         $el.find("#collapse").on("click", function() {
-          $("li > ol").hide();
+          $(".child").hide();
           $("li").removeClass("is-open");
         });
       }
