@@ -10,9 +10,7 @@ module Tractatus
     end
 
     def build!
-      prev_depth = 0
-      prev_node = root
-
+      prev_depth, prev_node = 0, root
       lines.each do |line|
         line = Line.new(line)
 
@@ -24,8 +22,7 @@ module Tractatus
         (parent.nil? ? root : parent) << line.node
 
         # Setup for next loop
-        prev_depth = line.depth
-        prev_node = line.node
+        prev_depth, prev_node = line.depth, line.node
       end
     end
   end # Tree
