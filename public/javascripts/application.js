@@ -1,5 +1,5 @@
-(function(){
-  "use-strict";
+(function() {
+  "use strict";
 
   var App = {
     Routers : {},
@@ -61,7 +61,7 @@
       $(".is-highlighted").removeClass("is-highlighted");
     },
 
-    preventCollapse: function(e) {
+    preventCollapse: function() {
       return false;
     },
 
