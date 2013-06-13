@@ -10,19 +10,21 @@ module Tractatus
     end
 
     def build!
-      prev_depth, prev_node = 0, root
-      lines.each do |line|
-        line = Line.new(line)
+      [0, root].tap do |prev_depth, prev_node|
+        lines.each do |line|
+          line = Line.new(line)
 
-        # Traverse up to appropriate parent
-        chain = (prev_depth - (line.depth - 1)).times.collect { :parent }
-        parent = chain.inject(prev_node, &:send)
+          # Traverse up to appropriate parent
+          parent = (prev_depth - (line.depth - 1)).times.collect do
+            :parent
+          end.inject(prev_node, &:send)
 
-        # If node is nil then we are grafting onto the root node
-        (parent.nil? ? root : parent) << line.node
+          # If node is nil then we are grafting onto the root node
+          (parent.nil? ? root : parent) << line.node
 
-        # Setup for next loop
-        prev_depth, prev_node = line.depth, line.node
+          # Setup for next loop
+          prev_depth, prev_node = line.depth, line.node
+        end
       end
     end
   end # Tree
