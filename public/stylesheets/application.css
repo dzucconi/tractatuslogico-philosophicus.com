@@ -10,7 +10,7 @@ body {
   .is-expanded #expand { display: none; }
   .is-expanded #collapse { display: block; }
 
-.l-document { width: 75%; }
+.l-document { width: 85%; }
 
 ol {
   margin: 0;
