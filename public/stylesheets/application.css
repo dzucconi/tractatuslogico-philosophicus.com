@@ -7,6 +7,8 @@ body {
   font-size: 16px;
   line-height: 20px;
 }
+  .is-expanded #expand { display: none; }
+  .is-expanded #collapse { display: block; }
 
 .l-document { width: 75%; }
 
@@ -56,6 +58,7 @@ li:hover { background-color: rgba(0,0,0,0.1); }
   padding: 1em;
 }
   .menu > a {
+    display: block;
     cursor: pointer;
     color: #000;
     line-height: 1;

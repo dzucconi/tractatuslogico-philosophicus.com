@@ -2,10 +2,8 @@
   "use-strict";
 
   var App = {
-    Models      : {},
-    Collections : {},
-    Routers     : {},
-    Views       : {},
+    Routers : {},
+    Views   : {},
 
     initialize: function() {
       this.router = new App.Routers.Router();
@@ -18,7 +16,7 @@
     routes: {
       "node/:node" : "node",
       "expanded"   : "expandAll",
-      "collapsed"   : "collapseAll"
+      "collapsed"  : "collapseAll"
     },
 
     initialize: function() {
@@ -33,17 +31,17 @@
     },
 
     expandAll: function() {
+      $("body").removeClass("is-collapsed").addClass("is-expanded");
+
       $("ol").show();
       $("li").addClass("is-open");
-      $("#expand").hide();
-      $("#collapse").show();
     },
 
     collapseAll: function() {
+      $("body").removeClass("is-expanded").addClass("is-collapsed");
+
       $(".child").hide();
       $("li").removeClass("is-open");
-      $("#collapse").hide();
-      $("#expand").show();
     }
   });
 
