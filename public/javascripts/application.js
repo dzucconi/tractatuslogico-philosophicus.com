@@ -66,10 +66,11 @@
     },
 
     toggleNode: function(e) {
+      var $target;
+
       this.trigger("node:toggle");
 
-      var $target = $(e.currentTarget);
-
+      $target = $(e.currentTarget);
       $target.toggleClass("is-open").children("ol").toggle();
 
       App.router.navigate("node/" + $target.attr("id"), { trigger: false, replace: true });
